@@ -213,7 +213,7 @@ namespace CairoDesktop
                 btnDesktopOverlay.Visibility = Visibility.Collapsed;
                 btnDesktopOverlay.DataContext = null;
                 bdrBackground.DataContext = null;
-                bdrTaskbar.Padding = new Thickness(5, 0, 0, 0);
+                bdrTaskbar.Padding = new Thickness(8, 0, 8, 0);
             }
         }
 

@@ -3,8 +3,11 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:l10n="clr-namespace:CairoDesktop.Localization;assembly=CairoDesktop.Localization"
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
+    <SolidColorBrush Color="#4DFFFFFF" x:Key="MenuBackgroundBrush"></SolidColorBrush>
+    <SolidColorBrush Color="#6DFFFFFF" x:Key="LauncherBackgroundBrush"></SolidColorBrush>
+
     <!-- Font resources -->
-    <FontFamily x:Key="DialogFontFamily">Corbel</FontFamily>
+<FontFamily x:Key="DialogFontFamily">Corbel</FontFamily>
     <FontFamily x:Key="GlobalFontFamily">Segoe UI</FontFamily>
 
     <system:Double x:Key="LargeTitleFontSize">33</system:Double>
@@ -20,6 +23,14 @@
     <!-- Menu resources -->
     <system:Boolean x:Key="MenuBarWindowAllowsTransparency">True</system:Boolean>
     <SolidColorBrush Color="#00FFFFFF" x:Key="MenuBarWindowStyleBackground" />
+    <!--LinearGradientBrush StartPoint="0,0"
+                         EndPoint="0,1"
+                         x:Key="MenuBarBackground">
+        <GradientStop Color="#CF000000"
+                      Offset="0.0" />
+        <GradientStop Color="#8F4a4a4a"
+                      Offset="1.0" />
+    </LinearGradientBrush -->
     <LinearGradientBrush StartPoint="0,0"
                          EndPoint="0,1"
                          x:Key="MenuBarBackground">
@@ -1431,11 +1442,11 @@
         <Setter Property="BorderThickness"
                 Value="1,1,1,0" />
         <Setter Property="CornerRadius"
-                Value="8,8,0,0" />
+                Value="8" />
         <Setter Property="Background"
-                Value="{DynamicResource ResourceKey=TaskbarBottomBackground}" />
+                Value="{DynamicResource ResourceKey=LauncherBackgroundBrush}" />
         <Setter Property="BorderBrush"
-                Value="{DynamicResource ResourceKey=TaskbarBottomBorder}" />
+                Value="{DynamicResource ResourceKey=LauncherBackgroundBrush}" />
     </Style>
     <Style x:Key="CairoTaskbarFullBorderStyle"
            TargetType="{x:Type Border}"
@@ -1465,6 +1476,7 @@
         <Setter Property="CornerRadius"
                 Value="0" />
     </Style>
+	
     <Style x:Key="TaskbarListView"
            TargetType="{x:Type ListView}">
         <Setter Property="Background"
@@ -1568,7 +1580,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ContentControl">
-                    <Border BorderThickness="1,0,0,0"
+                    <Border BorderThickness="0,0,0,0"
                             BorderBrush="{DynamicResource ResourceKey=TaskGroupBorder}"
                             Margin="3,1,1,0"
                             x:Name="GroupBorder">
@@ -1610,11 +1622,11 @@
                 <!-- this is the style that loads on default buttons -->
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border x:Name="Border"
-                            BorderThickness="1"
-                            CornerRadius="1,1,0,0"
-                            Margin="0,0,0,0"
-                            Background="{DynamicResource ResourceKey=TaskbarItemInactiveBackgroundGradient}"
-                            BorderBrush="{DynamicResource ResourceKey=TaskbarItemInactiveBorderGradient}">
+                            BorderThickness="0"
+                            CornerRadius="0"
+                            Margin="3,0,0,0"
+                            Background="Transparent"
+                            BorderBrush="Transparent">
                         <ContentPresenter Margin="0,1,0,0"
                                           HorizontalAlignment="Stretch"
                                           VerticalAlignment="Stretch" />
@@ -1637,12 +1649,13 @@
                         </DataTrigger>
                         <Trigger Property="IsMouseOver"
                                  Value="true">
-                            <Setter TargetName="Border"
+                            <Setter Property="Cursor" Value="Hand"></Setter>
+							<!-- <Setter TargetName="Border"
                                     Property="Background"
                                     Value="{DynamicResource ResourceKey=TaskbarItemInactiveHoverBackground}" />
                             <Setter TargetName="Border"
                                     Property="BorderBrush"
-                                    Value="{DynamicResource ResourceKey=TaskbarItemInactiveHoverBorder}" />
+                                    Value="{DynamicResource ResourceKey=TaskbarItemInactiveHoverBorder}" /> -->
                         </Trigger>
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
@@ -1671,15 +1684,121 @@
                                 <Condition Binding="{Binding IsPressed, RelativeSource={RelativeSource Self}}"
                                            Value="True" />
                             </MultiDataTrigger.Conditions>
-                            <Setter TargetName="Border"
+							<!--<Setter TargetName="Border"
+                                    Property="Background"
+                                    Value="{DynamicResource ResourceKey=TaskbarItemFlashingPressedBackground}" />-->
+                        </MultiDataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+				<!-- XXX BACKUP:
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Border x:Name="Border"
+                            BorderThickness="1"
+                            CornerRadius="1,1,0,0"
+                            Margin="0,0,0,0"
+                            Background="{DynamicResource ResourceKey=TaskbarItemInactiveBackgroundGradient}"
+                            BorderBrush="{DynamicResource ResourceKey=TaskbarItemInactiveBorderGradient}">
+						<ContentPresenter Margin="0,1,0,0"
+                                          HorizontalAlignment="Stretch"
+                                          VerticalAlignment="Stretch" />
+					</Border>
+					<ControlTemplate.Triggers>
+						<DataTrigger Binding="{Binding Path=State}"
+                                     Value="3">
+							<DataTrigger.EnterActions>
+								<BeginStoryboard Storyboard="{DynamicResource TaskbarFlashOn}" />
+							</DataTrigger.EnterActions>
+							<DataTrigger.ExitActions>
+								<BeginStoryboard Storyboard="{DynamicResource TaskbarFlashOff}" />
+							</DataTrigger.ExitActions>
+							<Setter TargetName="Border"
+                                    Property="Background"
+                                    Value="{DynamicResource ResourceKey=TaskbarItemFlashingBackgroundGradient}" />
+							<Setter TargetName="Border"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource ResourceKey=TaskbarItemFlashingBorderGradient}" />
+						</DataTrigger>
+						<Trigger Property="IsMouseOver"
+                                 Value="true">
+							<Setter TargetName="Border"
+                                    Property="Background"
+                                    Value="{DynamicResource ResourceKey=TaskbarItemInactiveHoverBackground}" />
+							<Setter TargetName="Border"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource ResourceKey=TaskbarItemInactiveHoverBorder}" />
+						</Trigger>
+						<MultiDataTrigger>
+							<MultiDataTrigger.Conditions>
+								<Condition Binding="{Binding Path=State}"
+                                           Value="3" />
+								<Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}"
+                                           Value="True" />
+							</MultiDataTrigger.Conditions>
+							<Setter TargetName="Border"
+                                    Property="Background"
+                                    Value="{DynamicResource ResourceKey=TaskbarItemFlashingHoverBackground}" />
+							<Setter TargetName="Border"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource ResourceKey=TaskbarItemFlashingBorderGradient}" />
+						</MultiDataTrigger>
+						<Trigger Property="IsPressed"
+                                 Value="true">
+							<Setter TargetName="Border"
+                                    Property="Background"
+                                    Value="{DynamicResource ResourceKey=TaskbarItemInactivePressedBackground}" />
+						</Trigger>
+						<MultiDataTrigger>
+							<MultiDataTrigger.Conditions>
+								<Condition Binding="{Binding Path=State}"
+                                           Value="3" />
+								<Condition Binding="{Binding IsPressed, RelativeSource={RelativeSource Self}}"
+                                           Value="True" />
+							</MultiDataTrigger.Conditions>
+							<Setter TargetName="Border"
                                     Property="Background"
                                     Value="{DynamicResource ResourceKey=TaskbarItemFlashingPressedBackground}" />
-                        </MultiDataTrigger>
+						</MultiDataTrigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate> -->
+            </Setter.Value>
+        </Setter>
+    </Style>
+	<!-- XXX BACKUP:
+	    <Style x:Key="CairoTaskbarButtonActiveStyle"
+           TargetType="{x:Type Button}"
+           BasedOn="{StaticResource CairoTaskbarButtonInactiveStyle}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="Border"
+                            BorderThickness="0"
+                            CornerRadius="1,1,0,0"
+                            Margin="0,0,0,0"
+                            Background="{DynamicResource ResourceKey=TaskbarItemActiveBackground}"
+                            BorderBrush="{DynamicResource ResourceKey=TaskbarItemActiveBorder}">
+                        <ContentPresenter Margin="0,1,0,0"
+                                          HorizontalAlignment="Stretch"
+                                          VerticalAlignment="Stretch" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="true">
+                            <Setter TargetName="Border"
+                                    Property="Background"
+                                    Value="{DynamicResource ResourceKey=TaskbarItemActiveHoverBackground}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed"
+                                 Value="true">
+                            <Setter TargetName="Border"
+                                    Property="Background"
+                                    Value="{DynamicResource ResourceKey=TaskbarItemActivePressedBackground}" />
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
+	-->
     <Style x:Key="CairoTaskbarButtonActiveStyle"
            TargetType="{x:Type Button}"
            BasedOn="{StaticResource CairoTaskbarButtonInactiveStyle}">
@@ -1687,11 +1806,11 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border x:Name="Border"
-                            BorderThickness="1"
-                            CornerRadius="1,1,0,0"
-                            Margin="0,0,0,0"
+                            BorderThickness="0"
+                            CornerRadius="0"
+                            Margin="3,0,0,0"
                             Background="{DynamicResource ResourceKey=TaskbarItemActiveBackground}"
-                            BorderBrush="{DynamicResource ResourceKey=TaskbarItemActiveBorder}">
+                            BorderBrush="Transparent">
                         <ContentPresenter Margin="0,1,0,0"
                                           HorizontalAlignment="Stretch"
                                           VerticalAlignment="Stretch" />
@@ -1724,6 +1843,8 @@
                 Value="Center" />
         <Setter Property="TextAlignment"
                 Value="Center" />
+        <Setter Property="Foreground"
+                Value="Black" />
         <Setter Property="TextTrimming"
                 Value="CharacterEllipsis" />
     </Style>
@@ -1937,8 +2058,7 @@
            BasedOn="{StaticResource TaskbarListView}"
            TargetType="{x:Type ListView}">
         <Style.Triggers>
-            <Trigger Property="HasItems"
-                     Value="False">
+            <Trigger Property="HasItems" Value="False">
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type ListView}">
@@ -1962,8 +2082,7 @@
     </Style>
     <Style x:Key="CairoTaskListButtonStyle"
            TargetType="{x:Type Button}">
-        <Setter Property="OverridesDefaultStyle"
-                Value="true" />
+        <Setter Property="OverridesDefaultStyle" Value="true" />
         <Setter Property="FontFamily"
                 Value="{DynamicResource ResourceKey=GlobalFontFamily}" />
         <Setter Property="FontSize"

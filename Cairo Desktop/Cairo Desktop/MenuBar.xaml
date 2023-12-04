@@ -20,6 +20,7 @@
         <l10n:DisplayString />
     </Window.DataContext>
     <DockPanel Style="{StaticResource MenuBarStyle}"
+               Background="{StaticResource MenuBackgroundBrush}"
                x:Name="CairoMenuBarContainer">
         <StackPanel Orientation="Horizontal"
                     VerticalAlignment="Top"

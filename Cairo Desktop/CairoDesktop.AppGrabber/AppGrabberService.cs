@@ -4,6 +4,7 @@ using CairoDesktop.Localization;
 using ManagedShell.Common.Enums;
 using ManagedShell.Common.Helpers;
 using ManagedShell.Common.Logging;
+using ManagedShell.Interop;
 using ManagedShell.ShellFolders;
 using ManagedShell.ShellFolders.Interfaces;
 using System;
@@ -11,6 +12,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows;
 using System.Windows.Data;
@@ -382,9 +384,46 @@ namespace CairoDesktop.AppGrabber
                         CairoMessage.Show(DisplayString.sError_FileNotFoundInfo, DisplayString.sError_OhNo, MessageBoxButton.OK, CairoMessageImage.Error);
                     }
                 }
-                else if (!ShellHelper.StartProcess(app.Path, workingDirectory: getAppParentDirectory(app)))
+                else
                 {
-                    CairoMessage.Show(DisplayString.sError_FileNotFoundInfo, DisplayString.sError_OhNo, MessageBoxButton.OK, CairoMessageImage.Error);
+                    if (app.Target.ToLower().EndsWith("explorer.exe"))
+                    {
+                        var explorer = Process.GetProcessesByName("explorer").Where(o => !string.IsNullOrEmpty(o.MainWindowTitle)).ToList().LastOrDefault();
+                        if (explorer is not {  MainWindowHandle: > 0} )
+                        {
+                            ShellHelper.StartProcess(app.Path, workingDirectory: getAppParentDirectory(app));
+                        } else
+                        {
+
+                            NativeMethods.WINDOWPLACEMENT placement = new();
+                            placement.length = Marshal.SizeOf(placement);                            
+                            NativeMethods.GetWindowPlacement(explorer.MainWindowHandle, ref placement);
+
+                            if (placement.showCmd == NativeMethods.WindowShowStyle.ShowMinimized)
+                            {
+                                NativeMethods.ShowWindow(explorer.MainWindowHandle, NativeMethods.WindowShowStyle.Restore);
+                                NativeMethods.SetForegroundWindow(explorer.MainWindowHandle);
+                            }
+                            else
+                            {
+                                if (NativeMethods.GetForegroundWindow() == explorer.MainWindowHandle)
+                                {
+                                    NativeMethods.ShowWindow(explorer.MainWindowHandle, NativeMethods.WindowShowStyle.Minimize);
+                                }
+                                else
+                                {
+                                    NativeMethods.SetForegroundWindow(explorer.MainWindowHandle);
+                                }
+                            }
+                        }
+
+                        return;
+                    }
+
+                    if (!ShellHelper.StartProcess(app.Path, workingDirectory: getAppParentDirectory(app)))
+                    {
+                        CairoMessage.Show(DisplayString.sError_FileNotFoundInfo, DisplayString.sError_OhNo, MessageBoxButton.OK, CairoMessageImage.Error);
+                    }
                 }
             }
         }

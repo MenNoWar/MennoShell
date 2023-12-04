@@ -1,12 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
-
   <PropertyGroup>
-	<TargetFrameworks>net471;net6.0-windows</TargetFrameworks>
+    <TargetFrameworks>net8.0-windows</TargetFrameworks>
     <Platforms>x64;AnyCPU;ARM64</Platforms>
     <UseWPF>True</UseWPF>
     <UseWindowsForms>True</UseWindowsForms>
   </PropertyGroup>
-
   <PropertyGroup>
     <ApplicationIcon>Application.ico</ApplicationIcon>
     <StartupObject>CairoDesktop.Program</StartupObject>
@@ -20,31 +18,24 @@
     <Product>Cairo Desktop Environment</Product>
     <Copyright>Copyright © 2022 Cairo Development Team</Copyright>
   </PropertyGroup>
-
   <PropertyGroup Condition="'$(Platform)'=='AnyCPU'">
     <RuntimeIdentifier>win-x86</RuntimeIdentifier>
   </PropertyGroup>
-
   <PropertyGroup Condition="'$(Platform)'=='x64'">
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
   </PropertyGroup>
-
   <PropertyGroup Condition="'$(Platform)'=='ARM64'">
     <RuntimeIdentifier>win-arm64</RuntimeIdentifier>
   </PropertyGroup>
-
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">
     <DefineConstants>TRACE;DEBUG;ENABLEFIRSTRUN</DefineConstants>
   </PropertyGroup>
-
   <PropertyGroup Condition="'$(Configuration)'=='Release'">
     <DefineConstants>TRACE;ENABLEFIRSTRUN</DefineConstants>
   </PropertyGroup>
-
   <ItemGroup>
     <Page Remove="Themes\FlatAccent.xaml" />
   </ItemGroup>
-
   <ItemGroup>
     <None Include="Themes\Fade.xaml">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
@@ -63,22 +54,20 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="ManagedShell" Version="0.0.231" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.CommandLine" Version="6.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="6.0.1" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="6.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="6.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Options" Version="6.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="6.0.0" />
-    <PackageReference Include="Microsoft.Windows.Compatibility" Version="7.0.3" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.CommandLine" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Windows.Compatibility" Version="8.0.0" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\CairoDesktop.AppGrabber\CairoDesktop.AppGrabber.csproj" />
     <ProjectReference Include="..\CairoDesktop.Application\CairoDesktop.Application.csproj" />
@@ -89,11 +78,9 @@
     <ProjectReference Include="..\CairoDesktop.Localization\CairoDesktop.Localization.csproj" />
     <ProjectReference Include="..\CairoDesktop.MenuBarExtensions\CairoDesktop.MenuBarExtensions.csproj" />
   </ItemGroup>
-
   <ItemGroup>
     <Reference Include="System.Management" />
   </ItemGroup>
-
   <ItemGroup>
     <Resource Include="Application.ico" />
     <Resource Include="Resources\searchDefault.png" />
@@ -127,5 +114,4 @@
     <Resource Include="Resources\volumeOffIconDefault.png" />
     <Resource Include="Resources\controlsUp.png" />
   </ItemGroup>
-
 </Project>

@@ -1,4 +1,5 @@
-﻿using CairoDesktop.Application.Interfaces;
+﻿using System.Windows.Forms;
+using CairoDesktop.Application.Interfaces;
 using CairoDesktop.Interfaces;
 using ManagedShell;
 using ManagedShell.AppBar;
@@ -9,9 +10,12 @@ namespace CairoDesktop.SupportingClasses
     {
         protected readonly ICairoApplication _cairoApplication;
         protected readonly IWindowManager _windowManager;
-        
-        public CairoAppBarWindow() : base(null, null, null, AppBarScreen.FromPrimaryScreen(), AppBarEdge.Bottom, AppBarMode.Normal, 0)
-        { }
+
+        public CairoAppBarWindow() : base(null, null, null, AppBarScreen.FromPrimaryScreen(), AppBarEdge.Bottom,
+            AppBarMode.Normal, 0)
+        {
+            Topmost = true;
+        }
 
         public CairoAppBarWindow(ICairoApplication cairoApplication, ShellManager shellManager, IWindowManager windowManager, AppBarScreen screen, int edgeSetting, int modeSetting, double height) : base(
             shellManager.AppBarManager, shellManager.ExplorerHelper, shellManager.FullScreenHelper, screen, SettingToAppBarEdge(edgeSetting), SettingToAppBarMode(modeSetting), height)

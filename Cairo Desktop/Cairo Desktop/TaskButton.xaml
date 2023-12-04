@@ -22,6 +22,7 @@
             DragLeave="btn_DragLeave"
             MouseEnter="btn_MouseEnter"
             MouseLeave="btn_MouseLeave">
+        
         <Button.Style>
             <MultiBinding Converter="{StaticResource styleConverter}" 
                           NotifyOnSourceUpdated="True">

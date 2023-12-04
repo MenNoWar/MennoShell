@@ -1,28 +1,23 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
-
   <PropertyGroup>
-	<TargetFrameworks>net471;net6.0-windows</TargetFrameworks>
+    <TargetFrameworks>net8.0-windows</TargetFrameworks>
     <Platforms>x64;AnyCPU;ARM64</Platforms>
     <UseWPF>True</UseWPF>
     <UseWindowsForms>True</UseWindowsForms>
   </PropertyGroup>
-
   <ItemGroup>
     <None Remove="Resources\InvertShader\shader_invert.ps" />
   </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="ManagedShell" Version="0.0.231" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\CairoDesktop.Configuration\CairoDesktop.Configuration.csproj" />
     <ProjectReference Include="..\CairoDesktop.Interop\CairoDesktop.Interop.csproj" />
     <ProjectReference Include="..\CairoDesktop.Localization\CairoDesktop.Localization.csproj" />
   </ItemGroup>
-
   <ItemGroup>
     <Resource Include="Resources\dialogIconCairo.png" />
     <Resource Include="Resources\dialogIconError.png" />
@@ -33,5 +28,4 @@
     <Resource Include="Resources\dialogIconShutDown.png" />
     <Resource Include="Resources\InvertShader\shader_invert.ps" />
   </ItemGroup>
-
 </Project>

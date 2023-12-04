@@ -192,8 +192,14 @@ namespace CairoDesktop.Services
 
         private void ResetScreenCache()
         {
-            // use reflection to empty screens cache
-            typeof(Screen).GetField("screens", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic).SetValue(null, null);
+            try
+            {
+                // use reflection to empty screens cache
+                typeof(Screen).GetField("screens",
+                        System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic)
+                    .SetValue(null, null);
+            }
+            catch { }
         }
 
         /// <summary>

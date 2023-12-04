@@ -1,6 +1,5 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
+# Blend for Visual Studio Version 17
 VisualStudioVersion = 17.3.32804.467
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cairo Desktop", "Cairo Desktop\Cairo Desktop.csproj", "{F0383E91-6ADC-4016-9E21-D3DC0FFC55FF}"
@@ -13,7 +12,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CairoDesktop.Interop", "Cai
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CairoDesktop.AppGrabber", "CairoDesktop.AppGrabber\CairoDesktop.AppGrabber.csproj", "{DE9674CC-507E-4049-9152-5C899B9F0939}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cairo Explorer", "Cairo Explorer\Cairo Explorer.csproj", "{68A28672-FF2F-4E6D-9FD6-B3DEE652851D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cairo Explorer", "Cairo Explorer\Cairo Explorer.csproj", "{68A28672-FF2F-4E6D-9FD6-B3DEE652851D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CairoDesktop.Configuration", "CairoDesktop.Configuration\CairoDesktop.Configuration.csproj", "{8E50FC68-8BF3-44F2-9229-708500625757}"
 EndProject
@@ -31,7 +30,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CairoDesktop.Application", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CairoDesktop.Infrastructure", "CairoDesktop.Infrastructure\CairoDesktop.Infrastructure.csproj", "{583AC66F-5B77-4EE2-ABA1-ED2CDC64B5F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cairo Desktop.Tests", "Tests\Cairo Desktop.Tests\Cairo Desktop.Tests.csproj", "{90BF43F9-B307-4A9B-87A2-EF14985A06E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cairo Desktop.Tests", "Tests\Cairo Desktop.Tests\Cairo Desktop.Tests.csproj", "{90BF43F9-B307-4A9B-87A2-EF14985A06E7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CairoDesktop.Interop.WinSparkle", "CairoDesktop.Interop.WinSparkle\CairoDesktop.Interop.WinSparkle.csproj", "{3BE34D36-B004-42FA-AE2C-3F4F8BD3861F}"
 EndProject
@@ -85,6 +84,7 @@ Global
 		{DE9674CC-507E-4049-9152-5C899B9F0939}.Release|x86.Build.0 = Release|Any CPU
 		{68A28672-FF2F-4E6D-9FD6-B3DEE652851D}.Debug|ARM64.ActiveCfg = Debug|ARM64
 		{68A28672-FF2F-4E6D-9FD6-B3DEE652851D}.Debug|x64.ActiveCfg = Debug|x64
+		{68A28672-FF2F-4E6D-9FD6-B3DEE652851D}.Debug|x64.Build.0 = Debug|x64
 		{68A28672-FF2F-4E6D-9FD6-B3DEE652851D}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{68A28672-FF2F-4E6D-9FD6-B3DEE652851D}.Release|ARM64.ActiveCfg = Release|ARM64
 		{68A28672-FF2F-4E6D-9FD6-B3DEE652851D}.Release|x64.ActiveCfg = Release|x64

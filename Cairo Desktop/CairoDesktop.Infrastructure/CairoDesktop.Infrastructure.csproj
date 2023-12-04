@@ -1,32 +1,24 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
-
   <PropertyGroup>
-	<TargetFrameworks>net471;net6.0-windows</TargetFrameworks>
+    <TargetFrameworks>net8.0-windows</TargetFrameworks>
     <Platforms>x64;AnyCPU;ARM64</Platforms>
     <UseWPF>True</UseWPF>
     <UseWindowsForms>True</UseWindowsForms>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="6.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.1" />
-  </ItemGroup>
-
-	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0-windows'">
-        <PackageReference Include="System.ComponentModel.Composition" Version="6.0.0" />
-	</ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\CairoDesktop.Application\CairoDesktop.Application.csproj" />
     <ProjectReference Include="..\CairoDesktop.Common\CairoDesktop.Common.csproj" />
     <ProjectReference Include="..\CairoDesktop.Configuration\CairoDesktop.Configuration.csproj" />
     <ProjectReference Include="..\CairoDesktop.Interop.WinSparkle\CairoDesktop.Interop.WinSparkle.csproj" />
   </ItemGroup>
-
   <ItemGroup>
     <Reference Include="System.ComponentModel.Composition" />
   </ItemGroup>
-
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0" />
+    <PackageReference Include="System.ComponentModel.Composition" Version="8.0.0" />
+  </ItemGroup>
 </Project>
